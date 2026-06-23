@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "income-details-7831b"
+  },
+  "targets": {
+    "income-details-7831b": {
+      "hosting": {
+        "myincome": [
+          "myincome"
+        ]
+      }
+    }
+  }
+}
