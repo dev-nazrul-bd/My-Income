@@ -247,12 +247,12 @@ export default function MainInterface({ onLogout }: MainInterfaceProps) {
   const calcSummary = getCalculationSummary();
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 py-6" id="main-user-interface">
+    <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 py-3" id="main-user-interface">
       {/* Profile and Header Panel */}
-      <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-gray-100 dark:border-zinc-800 p-6 md:p-8 shadow-sm transition-all mb-8">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-emerald-500 shadow-sm bg-gray-100 flex items-center justify-center">
+      <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-gray-100 dark:border-zinc-800 p-4 sm:p-5 shadow-xs transition-colors mb-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-emerald-500 shadow-xs bg-gray-100 flex items-center justify-center shrink-0">
               {appState.profile?.avatarUrl ? (
                 <img
                   src={appState.profile.avatarUrl}
@@ -261,104 +261,104 @@ export default function MainInterface({ onLogout }: MainInterfaceProps) {
                   referrerPolicy="no-referrer"
                 />
               ) : (
-                <span className="text-2xl font-bold bg-emerald-500 text-white w-full h-full flex items-center justify-center">
+                <span className="text-xl font-bold bg-emerald-500 text-white w-full h-full flex items-center justify-center">
                   M
                 </span>
               )}
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+              <h2 className="text-base font-bold text-gray-900 dark:text-white">
                 {appState.profile?.name || "Md Nazrul Islam"}
               </h2>
-              <p className="text-xs text-gray-500 dark:text-zinc-400 mt-0.5">
+              <p className="text-[11px] text-gray-500 dark:text-zinc-400">
                 Nazrul Group Income Management
               </p>
             </div>
           </div>
 
-          <div className="flex flex-col items-end text-right">
-            <div className="text-xs text-gray-400 uppercase tracking-wider font-semibold">
+          <div className="flex flex-col sm:items-end text-center sm:text-right">
+            <div className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">
               Current Active Season
             </div>
-            <div className="text-lg font-bold font-display text-emerald-600 dark:text-emerald-400 mt-1 flex items-center gap-1.5 justify-center sm:justify-start">
+            <div className="text-sm font-bold font-display text-emerald-600 dark:text-emerald-400 mt-0.5 flex items-center gap-1.5 justify-center sm:justify-start">
               <Layers className="h-4 w-4" />
               {appState.currentSeason || "No active season configured"}
             </div>
           </div>
         </div>
 
-        <hr className="my-6 border-gray-100 dark:border-zinc-800" />
+        <hr className="my-4 border-gray-100 dark:border-zinc-805" />
 
         {/* Dynamic Entry & calculation Action Buttons */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 gap-2 md:gap-3">
           <button
             onClick={() => setShowBigForm(true)}
-            className="flex items-center justify-center gap-3 py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium hover:shadow-lg hover:shadow-emerald-500/10 cursor-pointer transition-all text-sm group"
+            className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2.5 py-2.5 px-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold hover:shadow-md cursor-pointer transition-all text-[11px] sm:text-xs group text-center"
             id="add-data-big-button"
           >
-            <Plus className="h-5 w-5 transform transition-transform group-hover:scale-110" />
-            Add Data (Regular)
+            <Plus className="h-4 w-4 transform transition-transform group-hover:scale-110" />
+            <span className="truncate">Add Data (Regular)</span>
           </button>
 
           <button
             onClick={() => setShowSmallForm(true)}
-            className="flex items-center justify-center gap-3 py-3.5 px-6 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-medium hover:shadow-lg hover:shadow-sky-500/10 cursor-pointer transition-all text-sm group"
+            className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2.5 py-2.5 px-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold hover:shadow-md cursor-pointer transition-all text-[11px] sm:text-xs group text-center"
             id="add-data-small-button"
           >
             <Plus className="h-4 w-4 transform transition-transform group-hover:scale-110" />
-            Add Data (Paid)
+            <span className="truncate">Add Data (Paid)</span>
           </button>
 
           <button
             onClick={() => setShowCalculation(true)}
-            className="flex items-center justify-center gap-3 py-3.5 px-6 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium hover:shadow-lg hover:shadow-indigo-500/10 cursor-pointer transition-all text-sm group"
+            className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2.5 py-2.5 px-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold hover:shadow-md cursor-pointer transition-all text-[11px] sm:text-xs group text-center"
             id="calculate-button"
           >
-            <Calculator className="h-5 w-5" />
-            Calculate Summaries
+            <Calculator className="h-4 w-4" />
+            <span className="truncate">Calculate Summaries</span>
           </button>
 
           <button
             onClick={() => setShowPaidHistory(true)}
-            className="flex items-center justify-center gap-3 py-3.5 px-6 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-medium hover:shadow-lg hover:shadow-teal-500/10 cursor-pointer transition-all text-sm group"
+            className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2.5 py-2.5 px-2 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold hover:shadow-md cursor-pointer transition-all text-[11px] sm:text-xs group text-center"
             id="paid-history-button"
           >
             <History className="h-4 w-4" />
-            Paid Histories
+            <span className="truncate">Paid Histories</span>
           </button>
         </div>
       </div>
 
       {/* Main Income Data Table Section */}
-      <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-gray-100 dark:border-zinc-800 shadow-sm mb-8 overflow-hidden">
-        <div className="p-6 border-b border-gray-100 dark:border-zinc-800 flex items-center justify-between">
-          <h3 className="font-bold text-gray-900 dark:text-white flex items-center gap-2">
-            <span className="text-xl">৳</span> Season Ledger Records
+      <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-gray-100 dark:border-zinc-800 shadow-sm mb-4 overflow-hidden">
+        <div className="p-3.5 sm:p-4 border-b border-gray-100 dark:border-zinc-800 flex items-center justify-between">
+          <h3 className="text-sm font-bold text-gray-900 dark:text-white flex items-center gap-1.5">
+            <span className="text-emerald-500 font-bold">৳</span> Season Ledger Records
           </h3>
-          <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-full bg-gray-100 dark:bg-zinc-800 text-gray-500 dark:text-zinc-400">
+          <span className="text-[10px] sm:text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-gray-50 dark:bg-zinc-800 text-gray-500 dark:text-zinc-400">
             {bigRecords.length} entries
           </span>
         </div>
 
-        {/* Scrollable Table container */}
-        <div className="overflow-x-auto w-full">
+        {/* Scrollable Table container with vertical limits to prevent huge main window scroll necessity */}
+        <div className="overflow-x-auto w-full max-h-[380px] overflow-y-auto">
           {bigRecords.length === 0 ? (
-            <div className="py-20 text-center flex flex-col items-center justify-center">
-              <span className="text-5xl mb-4">Empty</span>
-              <p className="text-gray-400 dark:text-zinc-500 text-sm">
+            <div className="py-16 text-center flex flex-col items-center justify-center">
+              <span className="text-4xl mb-3">Empty</span>
+              <p className="text-gray-400 dark:text-zinc-500 text-xs px-4">
                 No ledger records saved for {appState.currentSeason || "this season"}. Add data to get started.
               </p>
             </div>
           ) : (
             <table className="w-full text-left border-collapse" id="ledger-table">
               <thead>
-                <tr className="bg-gray-50 dark:bg-zinc-900/50 border-b border-gray-100 dark:border-zinc-800 text-xs text-gray-500 dark:text-zinc-400 uppercase tracking-wider font-semibold">
-                  <th className="py-4 px-6">Date</th>
-                  <th className="py-4 px-6">Product Type</th>
-                  <th className="py-4 px-6 text-right">Piece</th>
-                  <th className="py-4 px-6 text-right">Value (Rate)</th>
-                  <th className="py-4 px-6 text-right">Total Price</th>
-                  <th className="py-4 px-6 text-center">Photo</th>
+                <tr className="bg-gray-50 dark:bg-zinc-900/50 border-b border-gray-100 dark:border-zinc-800 text-xs text-gray-500 dark:text-zinc-400 uppercase tracking-wider font-semibold sticky top-0 bg-white dark:bg-zinc-900 z-10">
+                  <th className="py-2 px-3">Date</th>
+                  <th className="py-2 px-3">Product Type</th>
+                  <th className="py-2 px-3 text-right">Piece</th>
+                  <th className="py-2 px-3 text-right">Value (Rate)</th>
+                  <th className="py-2 px-3 text-right">Total Price</th>
+                  <th className="py-2 px-3 text-center">Photo</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100 dark:divide-zinc-800/60 text-sm text-gray-700 dark:text-zinc-300">
@@ -369,24 +369,24 @@ export default function MainInterface({ onLogout }: MainInterfaceProps) {
                       key={record.id}
                       className="hover:bg-gray-50/50 dark:hover:bg-zinc-800/20 transition-all"
                     >
-                      <td className="py-4 px-6 font-mono text-xs">{record.date}</td>
-                      <td className="py-4 px-6 font-semibold text-gray-900 dark:text-zinc-200">
+                      <td className="py-2 px-3 font-mono text-xs">{record.date}</td>
+                      <td className="py-2 px-3 font-semibold text-gray-900 dark:text-zinc-200">
                         {typeObj ? typeObj.name : "Deleted Type"}
                       </td>
-                      <td className="py-4 px-6 text-right font-semibold font-mono text-emerald-600 dark:text-emerald-400">
+                      <td className="py-2 px-3 text-right font-semibold font-mono text-emerald-600 dark:text-emerald-400">
                         {record.piece}
                       </td>
-                      <td className="py-4 px-6 text-right font-mono text-gray-500 dark:text-zinc-400">
+                      <td className="py-2 px-3 text-right font-mono text-gray-500 dark:text-zinc-400">
                         ৳{typeObj ? typeObj.value : 0}
                       </td>
-                      <td className="py-4 px-6 text-right font-bold font-mono text-gray-900 dark:text-white">
+                      <td className="py-2 px-3 text-right font-bold font-mono text-gray-900 dark:text-white">
                         ৳{record.price || record.piece * (typeObj ? typeObj.value : 0)}
                       </td>
-                      <td className="py-4 px-6 text-center">
+                      <td className="py-2 px-3 text-center">
                         {record.photoUrl ? (
                           <button
                             onClick={() => setActivePhotoUrl(record.photoUrl)}
-                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 transition-all font-medium cursor-pointer"
+                            className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 transition-all font-medium cursor-pointer"
                           >
                             <Eye className="h-3 w-3" /> View
                           </button>
@@ -404,25 +404,25 @@ export default function MainInterface({ onLogout }: MainInterfaceProps) {
       </div>
 
       {/* Notepad Section */}
-      <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-gray-100 dark:border-zinc-800 shadow-sm p-6 max-w-full flex flex-col items-center">
-        <div className="w-full flex items-center gap-2 mb-4">
-          <Notebook className="h-5 w-5 text-emerald-500" />
-          <h3 className="font-bold text-gray-900 dark:text-white">Notepad Diary</h3>
+      <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-gray-100 dark:border-zinc-800 shadow-sm p-4 sm:p-5 max-w-full flex flex-col">
+        <div className="w-full flex items-center gap-1.5 mb-2.5">
+          <Notebook className="h-4 w-4 text-emerald-500" />
+          <h3 className="text-sm font-bold text-gray-900 dark:text-white">Notepad Diary</h3>
         </div>
 
-        <div className="w-[90%] flex flex-col gap-3">
+        <div className="w-full flex flex-col gap-2.5">
           <textarea
             value={notepadDraft}
             onChange={(e) => setNotepadDraft(e.target.value)}
             placeholder="Write season thoughts, custom transaction logs, or remarks here..."
-            className="w-full h-[100px] p-3 border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900/50 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 text-gray-800 dark:text-zinc-200 resize-none font-sans"
+            className="w-full h-[90px] p-3 border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900/50 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 text-gray-800 dark:text-zinc-200 resize-none font-sans"
             id="notepad-textarea"
           />
           <div className="flex justify-end">
             <button
               onClick={handleSaveNotepad}
               disabled={notepadSaving || !appState.currentSeason}
-              className="px-5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs flex items-center gap-2 cursor-pointer transition-all disabled:opacity-50"
+              className="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer transition-all disabled:opacity-50"
               id="notepad-save-button"
             >
               {notepadSaving ? (
@@ -431,7 +431,7 @@ export default function MainInterface({ onLogout }: MainInterfaceProps) {
                 </>
               ) : (
                 <>
-                  <Check className="h-3.5 w-3.5" /> Save Note
+                  <Check className="h-3 w-3" /> Save Note
                 </>
               )}
             </button>
@@ -440,7 +440,7 @@ export default function MainInterface({ onLogout }: MainInterfaceProps) {
       </div>
 
       {/* FOOTER */}
-      <footer className="mt-16 text-center text-xs text-gray-400 dark:text-zinc-500 pb-8 border-t border-gray-100 dark:border-zinc-800/80 pt-6">
+      <footer className="mt-8 text-center text-xs text-gray-400 dark:text-zinc-500 pb-4 border-t border-gray-100 dark:border-zinc-800/80 pt-4">
         <p>Develope by Md Nazrul Islam</p>
       </footer>
 
@@ -791,10 +791,15 @@ export default function MainInterface({ onLogout }: MainInterfaceProps) {
               exit={{ opacity: 0, scale: 0.95 }}
               className="bg-white dark:bg-zinc-950 border border-gray-100 dark:border-zinc-900/70 w-full max-w-md rounded-2xl shadow-xl overflow-hidden"
             >
-              <div className="p-6 border-b border-gray-100 dark:border-zinc-800 flex items-center justify-between">
-                <h3 className="text-lg font-bold font-display text-gray-900 dark:text-white flex items-center gap-2">
-                  <History className="h-5 w-5 text-sky-500" /> Payment Received History
-                </h3>
+              <div className="p-6 border-b border-gray-100 dark:border-zinc-800 flex items-center justify-between font-sans">
+                <div>
+                  <h3 className="text-lg font-bold font-display text-gray-900 dark:text-white flex items-center gap-2">
+                    <History className="h-5 w-5 text-sky-500" /> Payment Received History
+                  </h3>
+                  <p className="text-[10px] text-slate-500 dark:text-zinc-400 font-bold uppercase tracking-wider mt-1 font-mono">
+                    Total: {smallRecords.length} Entries
+                  </p>
+                </div>
                 <button
                   onClick={() => setShowPaidHistory(false)}
                   className="p-1 px-2 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 text-gray-500 font-bold select-none cursor-pointer"
@@ -829,7 +834,7 @@ export default function MainInterface({ onLogout }: MainInterfaceProps) {
                 <div className="pt-6 border-t border-gray-100 dark:border-zinc-800/80 flex justify-between items-center mt-4">
                   <div>
                     <p className="text-[10px] text-gray-400 dark:text-zinc-500 uppercase tracking-widest font-semibold">
-                      Grand Total Paid
+                      Grand Total Paid ({smallRecords.length} entries)
                     </p>
                     <p className="text-base font-bold font-mono text-sky-600 dark:text-sky-400 mt-0.5">
                       ৳{smallRecords.reduce((s, r) => s + r.paidTaka, 0)}

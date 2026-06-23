@@ -231,9 +231,9 @@ export default function AdminPanel() {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 py-6" id="admin-panel-interface">
+    <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 py-3" id="admin-panel-interface">
       {/* Admin header profile section */}
-      <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-gray-100 dark:border-zinc-800 p-6 md:p-8 shadow-sm transition-all mb-8">
+      <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-gray-100 dark:border-zinc-800 p-4 sm:p-6 md:p-8 shadow-xs transition-all mb-4">
         <div className="flex flex-col sm:flex-row items-center gap-6">
           <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-md bg-gray-50 flex items-center justify-center border-2 border-indigo-500">
             {appState.profile?.avatarUrl ? (
@@ -260,7 +260,7 @@ export default function AdminPanel() {
         <hr className="my-6 border-gray-100 dark:border-zinc-800" />
 
         {/* 1. Update Profile Card */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
           <div className="space-y-4">
             <h3 className="font-bold text-lg text-gray-900 dark:text-white flex items-center gap-2 border-b border-gray-100 dark:border-zinc-800 pb-2">
               <Settings className="h-5 w-5 text-indigo-500" /> Profile Configurations
@@ -363,14 +363,12 @@ export default function AdminPanel() {
             </form>
           </div>
         </div>
-      </div>
-
-      {/* seasons, lists, and folders config section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      </div>      {/* seasons, lists, and folders config section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-4">
         {/* Season management list */}
-        <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-gray-100 dark:border-zinc-800 p-6 shadow-sm">
-          <h3 className="font-bold text-lg text-gray-900 dark:text-white flex items-center gap-2 border-b border-gray-100 dark:border-zinc-800 pb-3 mb-4">
-            <Layers className="h-5 w-5 text-emerald-500" /> Active Seasons & Folders
+        <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-gray-100 dark:border-zinc-800 p-4 sm:p-5 shadow-xs">
+          <h3 className="font-bold text-sm sm:text-base text-gray-900 dark:text-white flex items-center gap-1.5 border-b border-gray-100 dark:border-zinc-800 pb-3 mb-4">
+            <Layers className="h-4.5 w-4.5 text-emerald-500" /> Active Seasons & Folders
           </h3>
 
           <form onSubmit={handleAddSeason} className="flex gap-2 mb-6">
@@ -380,42 +378,42 @@ export default function AdminPanel() {
               placeholder="e.g. Winter 2026-A"
               value={newSeasonName}
               onChange={(e) => setNewSeasonName(e.target.value)}
-              className="flex-1 px-4 py-2 border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 text-gray-900 dark:text-white"
+              className="flex-1 min-w-0 px-3 py-1.5 border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 text-gray-900 dark:text-white"
             />
             <button
               type="submit"
               disabled={seasonLoading}
-              className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs rounded-lg flex items-center gap-1 cursor-pointer transition-all"
+              className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-lg flex items-center gap-1 cursor-pointer transition-all shrink-0"
             >
               <Plus className="h-4 w-4" /> Add
             </button>
           </form>
 
-          <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">
+          <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">
             Season Listing
           </h4>
 
           {appState.seasons?.length === 0 ? (
             <p className="text-xs text-gray-500 dark:text-zinc-500">No seasons available yet.</p>
           ) : (
-            <div className="space-y-2 max-h-[220px] overflow-y-auto pr-1">
+            <div className="space-y-1.5 max-h-[190px] overflow-y-auto pr-1">
               {appState.seasons?.map((season) => {
                 const isActive = appState.currentSeason === season;
                 return (
                   <div
                     key={season}
-                    className={`flex items-center justify-between p-3 rounded-lg border text-sm transition-all ${
+                    className={`flex items-center justify-between p-2 rounded-lg border text-xs transition-all ${
                       isActive
-                        ? "bg-emerald-50 dark:bg-emerald-950/20 border-emerald-300 dark:border-emerald-800/60"
-                        : "bg-gray-50 dark:bg-zinc-900/40 border-gray-100 dark:border-zinc-800/80"
+                        ? "bg-emerald-50 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-800/40"
+                        : "bg-gray-50 dark:bg-zinc-900/40 border-gray-100 dark:border-zinc-805"
                     }`}
                   >
-                    <span className="font-bold dark:text-white">{season}</span>
-                    <div className="flex gap-2">
+                    <span className="font-bold dark:text-white truncate pr-2">{season}</span>
+                    <div className="flex gap-1.5 shrink-0">
                       {!isActive && (
                         <button
                           onClick={() => selectSeason(season)}
-                          className="px-2.5 py-1 text-xs font-medium bg-emerald-100 hover:bg-emerald-200 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 rounded-md cursor-pointer transition-all"
+                          className="px-2.5 py-1 text-[10px] font-bold bg-emerald-100 hover:bg-emerald-200 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 rounded-md cursor-pointer transition-all"
                         >
                           Select
                         </button>
@@ -430,7 +428,7 @@ export default function AdminPanel() {
                         }}
                         className="p-1 rounded-md text-gray-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30 cursor-pointer"
                       >
-                        <Trash2 className="h-4 w-4" />
+                        <Trash2 className="h-3.5 w-3.5" />
                       </button>
                     </div>
                   </div>
@@ -441,21 +439,21 @@ export default function AdminPanel() {
         </div>
 
         {/* Product Type rate settings section */}
-        <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-gray-100 dark:border-zinc-800 p-6 shadow-sm">
-          <h3 className="font-bold text-lg text-gray-900 dark:text-white flex items-center gap-2 border-b border-gray-100 dark:border-zinc-800 pb-3 mb-4">
-            <Database className="h-5 w-5 text-indigo-500" /> Product Type Rates & Scales
+        <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-gray-100 dark:border-zinc-800 p-4 sm:p-5 shadow-xs">
+          <h3 className="font-bold text-sm sm:text-base text-gray-900 dark:text-white flex items-center gap-1.5 border-b border-gray-100 dark:border-zinc-800 pb-3 mb-4">
+            <Database className="h-4.5 w-4.5 text-indigo-500" /> Product Type Rates & Scales
           </h3>
 
-          <form onSubmit={handleAddProductType} className="grid grid-cols-2 gap-2 mb-6">
+          <form onSubmit={handleAddProductType} className="flex flex-col sm:flex-row gap-2 mb-4">
             <input
               type="text"
               required
               placeholder="Type Name"
               value={prodTypeName}
               onChange={(e) => setProdTypeName(e.target.value)}
-              className="px-4 py-2 border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 text-gray-900 dark:text-white"
+              className="flex-1 min-w-0 px-3 py-1.5 border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 text-gray-900 dark:text-white"
             />
-            <div className="flex gap-2">
+            <div className="flex gap-2 sm:w-44 shrink-0">
               <input
                 type="number"
                 min="1"
@@ -465,19 +463,19 @@ export default function AdminPanel() {
                 onChange={(e) =>
                   setProdTypeValue(e.target.value === "" ? "" : Number(e.target.value))
                 }
-                className="flex-1 min-w-0 px-4 py-2 border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 text-gray-900 dark:text-white"
+                className="flex-1 min-w-0 px-3 py-1.5 border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 text-gray-900 dark:text-white"
               />
               <button
                 type="submit"
                 disabled={prodTypeSaving}
-                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs rounded-lg flex items-center gap-1 cursor-pointer transition-all"
+                className="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-lg flex items-center justify-center shrink-0 cursor-pointer transition-all gap-1"
               >
-                <Plus className="h-4 w-4" />
+                <Plus className="h-4 w-4" /> Add
               </button>
             </div>
           </form>
 
-          <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">
+          <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">
             Available Rates
           </h4>
 
