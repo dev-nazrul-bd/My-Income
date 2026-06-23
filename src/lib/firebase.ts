@@ -36,10 +36,14 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const database = getDatabase(app);
 
-// Enforce local persistence so the browser remembers the login
-setPersistence(auth, browserLocalPersistence).catch((error) => {
-  console.error("Auth persistence setup failed:", error);
-});
+// Enforce local persistence safely, catching sandboxed iframe issues
+try {
+  setPersistence(auth, browserLocalPersistence).catch((error) => {
+    console.error("Auth security persistence setup failed:", error);
+  });
+} catch (error) {
+  console.warn("Failed to set persistence due to iframe security constraints:", error);
+}
 
 // Root path in Realtime Database
 const ROOT = "My Income";

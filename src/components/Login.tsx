@@ -68,7 +68,7 @@ export default function Login({ onSuccess }: LoginProps) {
             </label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                <Mail className="h-4. x h-4 w-4" />
+                <Mail className="h-4 w-4" />
               </span>
               <input
                 type="email"
